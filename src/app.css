@@ -1,0 +1,149 @@
+@import 'tailwindcss';
+
+@theme {
+	--color-slate-950: #000000;
+	--color-slate-900: #0a0a0a;
+	--color-slate-800: #141414;
+	--color-slate-700: #1c1c1c;
+	--color-slate-600: #525252;
+	--color-slate-500: #737373;
+	--color-slate-400: #a3a3a3;
+	--color-slate-300: #d4d4d4;
+	--color-slate-200: #e5e5e5;
+	--color-slate-100: #f5f5f5;
+
+	--color-primary: #f97316;
+	--color-primary-light: #fb923c;
+	--color-primary-dark: #ea580c;
+
+	--color-success: #22c55e;
+	--color-warning: #eab308;
+	--color-danger: #ef4444;
+
+	--color-glass: rgba(10, 10, 10, 0.85);
+	--color-glass-border: rgba(255, 255, 255, 0.06);
+
+	/* Adaptive theme tokens */
+	--color-surface: var(--th-surface);
+	--color-surface-alt: var(--th-surface-alt);
+	--color-surface-border: var(--th-border);
+	--color-on-surface: var(--th-on-surface);
+	--color-border-subtle: var(--th-border-subtle);
+}
+
+:root {
+	--safe-top: env(safe-area-inset-top);
+	--safe-bottom: env(safe-area-inset-bottom);
+	--safe-left: env(safe-area-inset-left);
+	--safe-right: env(safe-area-inset-right);
+}
+
+/* Adaptive theme tokens - dark mode defaults */
+:root, .dark {
+	--th-surface: rgba(20, 20, 20, 0.5);
+	--th-surface-alt: rgba(20, 20, 20, 0.6);
+	--th-border: rgba(28, 28, 28, 0.5);
+	--th-on-surface: #ffffff;
+	--th-border-subtle: rgba(255, 255, 255, 0.05);
+}
+
+.light {
+	--th-surface: rgba(0, 0, 0, 0.04);
+	--th-surface-alt: rgba(0, 0, 0, 0.06);
+	--th-border: rgba(0, 0, 0, 0.1);
+	--th-on-surface: #141414;
+	--th-border-subtle: rgba(0, 0, 0, 0.06);
+}
+
+html {
+	-webkit-tap-highlight-color: transparent;
+	-webkit-text-size-adjust: 100%;
+	overscroll-behavior: none;
+}
+
+html.dark {
+	color-scheme: dark;
+}
+
+html.light {
+	color-scheme: light;
+}
+
+body {
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	overscroll-behavior: none;
+}
+
+.dark body {
+	background-color: #000000;
+	color: #e5e5e5;
+}
+
+.light body {
+	background-color: #f5f5f5;
+	color: #141414;
+}
+
+/* Glassmorphism */
+.glass {
+	background: rgba(10, 10, 10, 0.85);
+	backdrop-filter: blur(16px);
+	-webkit-backdrop-filter: blur(16px);
+	border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.light .glass {
+	background: rgba(255, 255, 255, 0.8);
+	border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Skeleton loader */
+@keyframes shimmer {
+	0% { background-position: -200% 0; }
+	100% { background-position: 200% 0; }
+}
+
+.skeleton {
+	background: linear-gradient(90deg, #0a0a0a 25%, #1a1a1a 50%, #0a0a0a 75%);
+	background-size: 200% 100%;
+	animation: shimmer 1.5s infinite;
+	border-radius: 8px;
+}
+
+.light .skeleton {
+	background: linear-gradient(90deg, #e5e5e5 25%, #f5f5f5 50%, #e5e5e5 75%);
+	background-size: 200% 100%;
+}
+
+/* Bottom nav safe area */
+.pb-safe {
+	padding-bottom: calc(4rem + var(--safe-bottom, 0px));
+}
+
+/* Hide scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+	display: none;
+}
+
+.no-scrollbar {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+/* Page transitions */
+.page-enter {
+	animation: pageIn 0.2s ease-out;
+}
+
+@keyframes pageIn {
+	from {
+		opacity: 0;
+		transform: translateY(8px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}

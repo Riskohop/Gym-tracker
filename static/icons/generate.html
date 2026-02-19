@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html><body>
+<canvas id="c192" width="192" height="192"></canvas>
+<canvas id="c512" width="512" height="512"></canvas>
+<script>
+function drawIcon(canvas, size) {
+  const ctx = canvas.getContext('2d');
+  // Background
+  ctx.fillStyle = '#0f172a';
+  ctx.fillRect(0, 0, size, size);
+  // Gradient circle
+  const grad = ctx.createRadialGradient(size/2, size/2, 0, size/2, size/2, size*0.4);
+  grad.addColorStop(0, '#818cf8');
+  grad.addColorStop(1, '#4f46e5');
+  ctx.fillStyle = grad;
+  ctx.beginPath();
+  ctx.arc(size/2, size/2, size*0.35, 0, Math.PI*2);
+  ctx.fill();
+  // Dumbbell icon
+  ctx.strokeStyle = '#fff';
+  ctx.lineWidth = size * 0.04;
+  ctx.lineCap = 'round';
+  const cy = size / 2;
+  const w = size * 0.5;
+  const x1 = (size - w) / 2;
+  const x2 = x1 + w;
+  ctx.beginPath(); ctx.moveTo(x1, cy); ctx.lineTo(x2, cy); ctx.stroke();
+  // Left weight
+  ctx.fillStyle = '#fff';
+  ctx.roundRect(x1 - size*0.03, cy - size*0.12, size*0.08, size*0.24, size*0.02);
+  ctx.fill();
+  // Right weight
+  ctx.roundRect(x2 - size*0.05, cy - size*0.12, size*0.08, size*0.24, size*0.02);
+  ctx.fill();
+}
+drawIcon(document.getElementById('c192'), 192);
+drawIcon(document.getElementById('c512'), 512);
+</script>
+</body></html>
