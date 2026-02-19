@@ -19,8 +19,8 @@ export default defineConfig({
 				background_color: '#0f172a',
 				display: 'standalone',
 				orientation: 'portrait',
-				scope: process.env.GITHUB_PAGES ? '/Gym-tracker/' : '/',
-				start_url: process.env.GITHUB_PAGES ? '/Gym-tracker/' : '/',
+				scope: '/',
+				start_url: '/',
 				categories: ['fitness', 'health', 'sports'],
 				icons: [
 					{
