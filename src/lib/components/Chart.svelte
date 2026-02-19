@@ -17,12 +17,11 @@
 	Chart.register(...registerables);
 
 	onMount(() => {
-		createChart();
 		return () => chartInstance?.destroy();
 	});
 
-	function createChart() {
-		if (!canvas) return;
+	$effect(() => {
+		if (!canvas || !data) return;
 		chartInstance?.destroy();
 
 		const config: ChartConfiguration = {
@@ -77,10 +76,6 @@
 		};
 
 		chartInstance = new Chart(canvas, config);
-	}
-
-	$effect(() => {
-		if (data && canvas) createChart();
 	});
 </script>
 

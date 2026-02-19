@@ -3,13 +3,14 @@ import type { ExerciseStats, DashboardData, WorkoutWithExercises } from '$lib/do
 import { calculate1RM, getMonthRange } from '$lib/utils/calc';
 import { workoutRepo } from '$lib/db/repositories';
 
-export async function getExerciseStats(exerciseId: string): Promise<ExerciseStats | null> {
-	const exercise = await db.exercises.get(exerciseId);
+export async function getExerciseStats(exerciseId: string | number): Promise<ExerciseStats | null> {
+	const numericId = Number(exerciseId);
+	const exercise = await db.exercises.get(numericId);
 	if (!exercise) return null;
 
 	const workoutExercises = await db.workoutExercises
 		.where('exerciseId')
-		.equals(exerciseId)
+		.equals(numericId)
 		.toArray();
 
 	if (workoutExercises.length === 0) {
